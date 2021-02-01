@@ -1,0 +1,47 @@
+CREATE TABLE UserInfo
+(
+  UserID SERIAL NOT NULL,
+  FirstName VARCHAR NOT NULL,
+  LastName VARCHAR NOT NULL,
+  Username VARCHAR NOT NULL,
+  AdminStatus INT NOT NULL,
+  PRIMARY KEY (UserID),
+  UNIQUE (Username)
+);
+CREATE TABLE Athlete
+(
+  AthleteID SERIAL NOT NULL,
+  AthFirstName VARCHAR NOT NULL,
+  AthLastName VARCHAR NOT NULL,
+  TeamName VARCHAR NOT NULL,
+  PRIMARY KEY (AthleteID)
+);
+CREATE TABLE Stats
+(
+  PPG FLOAT NOT NULL,
+  APG FLOAT NOT NULL,
+  RPG FLOAT NOT NULL,
+  SPG FLOAT NOT NULL,
+  BPG FLOAT NOT NULL,
+  StatID SERIAL NOT NULL,
+  AthleteID INT NOT NULL,
+  PRIMARY KEY (StatID),
+  FOREIGN KEY (AthleteID) REFERENCES Athlete(AthleteID)
+);
+CREATE TABLE Thread
+(
+  ThreadID SERIAL NOT NULL,
+  ThreadName VARCHAR NOT NULL,
+  PRIMARY KEY (ThreadID)
+);
+CREATE TABLE UserComments
+(
+  CommentID SERIAL NOT NULL,
+  CommentSubject VARCHAR NOT NULL,
+  CommentText VARCHAR NOT NULL,
+  CommentDate DATE NOT NULL,
+  CommentTime INT NOT NULL,
+  ThreadID INT NOT NULL,
+  PRIMARY KEY (CommentID),
+  FOREIGN KEY (ThreadID) REFERENCES Thread(ThreadID)
+);
