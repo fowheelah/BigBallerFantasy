@@ -1,0 +1,20 @@
+//View to link athletes with their stats
+
+CREATE VIEW athleteView AS
+SELECT athlete.athfirstname, athlete.athlastname, athlete.teamname, stats.ppg, stats.apg, stats.rpg, stats.spg, stats.bpg, stats.statid  
+FROM athlete
+INNER JOIN stats ON athlete.athleteid=stats.athleteid;
+
+//View to link threads with comments
+
+CREATE VIEW threadView AS
+SELECT thread.threadname, thread.comments, usercomments.commentsubject, usercomments.commenttext, usercomments.userid
+FROM thread
+INNER JOIN usercomments ON thread.threadid = usercomments.threadid;
+
+//View to link users with players they follow
+
+CREATE VIEW followView AS
+SELECT userinfo.username, userinfo.follow, athlete.athfirstname, athlete.athlastname
+FROM userinfo
+INNER JOIN athlete ON athlete.athleteid = ANY (userinfo.follow::int[]);
