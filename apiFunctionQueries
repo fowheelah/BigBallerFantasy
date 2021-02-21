@@ -7,7 +7,7 @@ DECLARE
   _role NAME;
   result jwt_token;
 BEGIN
-  SELECT userinfo.userid FROM userinfo WHERE userinfo.username=login.username AND userinfo.password=login.password INTO _role;
+  SELECT userinfo.userid FROM userinfo WHERE userinfo.username=login.username AND crypt(login.password, userinfo.password)=userinfo.password INTO _role;
   IF _role IS NULL THEN
     RAISE invalid_password USING message = 'invalid user or password';
   END IF;
@@ -25,10 +25,10 @@ BEGIN
 END;
 $$
 
-//Sinup Function
+//Signup Function
 CREATE OR REPLACE FUNCTION
 signup(firstname text, lastname text, username text, password text) RETURNS VOID
 AS $$
   INSERT INTO userinfo (firstname, lastname, username, password) VALUES
-    (signup.firstname, signup.lastname, signup.username, signup.password);
+    (signup.firstname, signup.lastname, signup.username, crypt(signup.password, gen_salt('bf', 8)));
 $$ LANGUAGE sql SECURITY DEFINER;
