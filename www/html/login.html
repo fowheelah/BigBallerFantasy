@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Big Baller Fantasy Stats Login Screen</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<script>
+	localStorage.clear();
+</script>
+
+<body>
+
+	<h1>Welcome to Big Baller Fantasy Stats!</h1>
+	<h2>Login</h2>
+	<form method="GET">
+		<label for="username">Username:</lable><br>
+		<input type="text" id="username" name="username"><br>
+		<label for="password">Password:</lable><br>
+		<input type="text" id="password" name="password"><br>
+		<input type="button" value="Login" onclick="login()">
+	</form><br>
+	
+	<div id="error"></div><br>
+	
+	<h2>Signup</h2>
+	
+	<form method="GET">
+		<label for="firstname">First Name:</lable><br>
+		<input type="text" id="firstname" name="firstname"><br>
+		<label for="lastname">Last Name:</lable><br>
+		<input type="text" id="lastname" name="lastname"><br>
+		<label for="susername">Username:</lable><br>
+		<input type="text" id="susername" name="susername"><br>
+		<label for="spassword">Password:</lable><br>
+		<input type="text" id="spassword" name="spassword"><br>
+		<input type="button" value="Login" onclick="signup()">
+	</form><br>
+	
+	<div id="serror"></div><br>
+
+</body>
+
+<script src="js/scripts.js"></script>
+
+</html>
