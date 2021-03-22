@@ -14,6 +14,42 @@
     <link href="css/style.css" rel="stylesheet">
 
   </head>
+  
+  <script>
+  
+  function addthreadcomment(cthreadid, cuserid) {
+	const url = 'http://192.168.50.58:8000/rpc/addcomment';
+	const data={
+		threadid:cthreadid,
+		userid:1,
+		commenttext:cuserid
+	}
+	
+	$.post(url, data, function(data, status){
+		console.log(data);
+		
+	})
+	.fail(function() {
+		console.log("error adding comment");
+	});
+}
+
+  	function addthread() {
+		const url = 'http://192.168.50.58:8000/rpc/addthread';
+		const data={
+			inthreadname:document.getElementById("newthread").value
+		}
+		$.post(url, data, function(data, status){
+			addthreadcomment(data[0].threadid, "Welcome to the new thread! Please be respectful of others!");
+			
+			location.reload();
+		})
+		.fail(function() {
+			console.log("error adding thread");
+		});
+	}
+  </script>
+  
   <body>
 
     <div class="container-fluid">
@@ -54,6 +90,11 @@
 					
 				</div>
 			</div>
+			<form>
+				<label for="newthread">New Thread:</lable><br>
+				<input type="text" id="newthread"><br>
+				<input type="button" value="Create" onclick="addthread()">
+			</form><br>
 		</div>
 	</div>
 </div>

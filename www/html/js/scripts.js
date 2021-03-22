@@ -249,7 +249,7 @@ function addcomment(cthreadid, cuserid) {
 		location.reload();
 	})
 	.fail(function() {
-		console.log("error adding follow");
+		console.log("error adding comment");
 	});
 }
 
@@ -295,5 +295,6 @@ function getthreads() {
 		console.log("error retrieving threads");
 	});
 }
+
 
 
